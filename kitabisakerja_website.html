@@ -1,0 +1,2762 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KitabisaKerja — Indonesia's Early Career & Youth Opportunity Network</title>
+  <meta name="description" content="Connecting university students, fresh graduates, and emerging talent with verified internships, apprenticeships, and entry-level careers across Indonesia. Transparent stipends, verified employers, zero placement fees.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230F2647'/><path d='M9 8v16m0-8l7-8m-7 8l8 8m3-12l4 4-8 8' stroke='%232563EB' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/><circle cx='23' cy='9' r='2.5' fill='%23F59E0B'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Motion (by Framer Motion) -->
+  <script src="https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.js"></script>
+
+  <style>
+    :root {
+      --primary: #0F2647;
+      --primary-light: #163664;
+      --primary-dark: #09172B;
+      --accent-blue: #2563EB;
+      --accent-blue-hover: #1D4ED8;
+      --accent-sky: #0284C7;
+      --accent-amber: #F59E0B;
+      --accent-amber-light: #FEF3C7;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #D1FAE5;
+      
+      --slate-50: #F8FAFC;
+      --slate-100: #F1F5F9;
+      --slate-200: #E2E8F0;
+      --slate-300: #CBD5E1;
+      --slate-400: #94A3B8;
+      --slate-500: #64748B;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1E293B;
+      --slate-900: #0F172A;
+      
+      --card-bg: #FFFFFF;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      
+      --shadow-subtle: 0 1px 3px 0 rgb(15 23 42 / 0.05), 0 1px 2px -1px rgb(15 23 42 / 0.05);
+      --shadow-card: 0 4px 6px -1px rgb(15 23 42 / 0.04), 0 2px 4px -2px rgb(15 23 42 / 0.04), 0 0 0 1px rgb(226 232 240 / 0.7);
+      --shadow-hover: 0 16px 32px -8px rgb(15 38 71 / 0.12), 0 4px 12px -2px rgb(15 38 71 / 0.06), 0 0 0 1px rgb(37 99 235 / 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--slate-50);
+      color: var(--slate-900);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* TOP CORPORATE BAR */
+    .top-bar {
+      background: linear-gradient(90deg, #09172B 0%, #0F2647 50%, #163664 100%);
+      color: #E2E8F0;
+      font-size: 12.5px;
+      padding: 8px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      z-index: 50;
+    }
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .top-bar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37, 99, 235, 0.25);
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      color: #93C5FD;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .top-bar-pulse {
+      width: 6px;
+      height: 6px;
+      background: #10B981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10B981;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--slate-200);
+      transition: all 0.25s ease;
+    }
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    /* BRAND LOGO */
+    /* BRAND LOGO EXACT TO IMAGE #2 */
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .brand-logo-emblem {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .brand-logo-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .logo-kitabisa {
+      font-weight: 700;
+      color: #0284C7;
+      letter-spacing: -0.02em;
+    }
+    .logo-kerja-badge {
+      background: #FDE047;
+      color: #1E293B;
+      font-weight: 800;
+      font-size: 13.5px;
+      padding: 3px 8px;
+      border-radius: 7px;
+      letter-spacing: -0.01em;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--slate-600);
+      transition: color 0.15s ease;
+      position: relative;
+      padding: 6px 0;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-blue);
+    }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent-blue);
+      border-radius: 2px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #172554 0%, #1D4ED8 100%);
+      transform: translateY(-1.5px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.32);
+    }
+    .btn-secondary {
+      background: #FFFFFF;
+      color: var(--slate-700);
+      border-color: var(--slate-200);
+      box-shadow: var(--shadow-subtle);
+    }
+    .btn-secondary:hover {
+      background: var(--slate-50);
+      border-color: var(--slate-300);
+      color: var(--slate-900);
+      transform: translateY(-1px);
+    }
+    .btn-amber {
+      background: var(--accent-amber);
+      color: #0F172A;
+      font-weight: 700;
+    }
+    .btn-amber:hover {
+      background: #D97706;
+      color: #FFFFFF;
+      transform: translateY(-1.5px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--slate-600);
+    }
+    .btn-ghost:hover {
+      background: var(--slate-100);
+      color: var(--slate-900);
+    }
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: var(--radius-sm);
+    }
+    .btn-lg {
+      padding: 14px 26px;
+      font-size: 15px;
+      border-radius: var(--radius-lg);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 8px;
+      cursor: pointer;
+      color: var(--slate-700);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      position: relative;
+      padding: 56px 0 52px;
+      background: radial-gradient(circle at 90% 12%, rgba(37, 99, 235, 0.08) 0%, transparent 45%),
+                  radial-gradient(circle at 10% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
+                  #F8FAFC;
+      border-bottom: 1px solid var(--slate-200);
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .pill-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: #FFFFFF;
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      border-radius: var(--radius-full);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .pill-kicker-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 3.8vw, 50px);
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+    .hero-title .highlight-blue {
+      color: var(--accent-blue);
+    }
+    .hero-subtitle {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--slate-600);
+      max-width: 540px;
+      margin-bottom: 26px;
+    }
+
+    /* SEARCH CONSOLE */
+    .search-console {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-xl);
+      padding: 10px;
+      box-shadow: 0 12px 36px -6px rgba(15, 38, 71, 0.12), 0 0 0 1px rgba(226, 232, 240, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .search-inputs {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr auto;
+      gap: 8px;
+      align-items: center;
+    }
+    .search-field {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      background: var(--slate-50);
+      border: 1px solid transparent;
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+    .search-field:focus-within {
+      background: #FFFFFF;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+    .search-field input, .search-field select {
+      border: none;
+      background: transparent;
+      outline: none;
+      width: 100%;
+      font-size: 13.5px;
+      color: var(--slate-800);
+      font-weight: 500;
+    }
+    .search-field svg {
+      color: var(--slate-400);
+      flex-shrink: 0;
+    }
+
+    .hero-proof-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--slate-500);
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+    .hero-proof-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-proof-item svg {
+      color: var(--accent-emerald);
+      flex-shrink: 0;
+    }
+
+    /* HERO ENTERPRISE PIPELINE CARD (Real B2B Talent Intake Dashboard) */
+    .pipeline-card-wrap {
+      position: relative;
+    }
+    .pipeline-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      border: 1px solid var(--slate-200);
+      box-shadow: 0 20px 48px -12px rgba(15, 38, 71, 0.16), 0 0 0 1px rgba(226, 232, 240, 0.9);
+      position: relative;
+      z-index: 10;
+    }
+    .pipeline-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .pipeline-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-blue);
+      background: #EFF6FF;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pipeline-pulse-dot {
+      width: 6px;
+      height: 6px;
+      background: #10B981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10B981;
+    }
+
+    .pipeline-stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .pipeline-stat-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      text-align: center;
+    }
+    .pipeline-stat-val {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+    .pipeline-stat-lbl {
+      font-size: 11px;
+      color: var(--slate-500);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .live-roles-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .feed-role-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+    .feed-role-item:hover {
+      border-color: var(--accent-blue);
+      transform: translateX(3px);
+    }
+    .feed-role-meta b {
+      font-size: 13.5px;
+      display: block;
+      color: var(--slate-900);
+    }
+    .feed-role-meta span {
+      font-size: 11.5px;
+      color: var(--slate-500);
+    }
+    .feed-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      background: #EFF6FF;
+      color: var(--accent-blue);
+    }
+
+    .floating-badge {
+      position: absolute;
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 24px -4px rgba(15, 38, 71, 0.15);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--slate-800);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 20;
+    }
+    .float-top {
+      top: -16px;
+      right: -16px;
+    }
+    .float-bottom {
+      bottom: -18px;
+      left: -18px;
+    }
+
+    /* INSTITUTIONAL BENCHMARK TICKER */
+    .impact-section {
+      padding: 44px 0;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .impact-card {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      transition: all 0.2s;
+    }
+    .impact-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    .impact-num {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .impact-num span {
+      color: var(--accent-blue);
+      font-size: 22px;
+    }
+    .impact-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 4px;
+    }
+    .impact-sub {
+      font-size: 12px;
+      color: var(--slate-500);
+      line-height: 1.5;
+    }
+
+    /* SECTION HEADERS */
+    .section {
+      padding: 80px 0;
+      position: relative;
+    }
+    .section-header {
+      margin-bottom: 40px;
+    }
+    .section-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .section-title {
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--primary-dark);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      font-size: 15.5px;
+      color: var(--slate-600);
+      max-width: 640px;
+      line-height: 1.6;
+    }
+
+    /* OPPORTUNITY CATALOG & FILTERS */
+    .jobs-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-pill {
+      padding: 7px 14px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      color: var(--slate-600);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-pill:hover {
+      border-color: var(--slate-300);
+      color: var(--slate-900);
+    }
+    .filter-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .job-card {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .job-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    .job-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .company-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .save-btn {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: var(--slate-400);
+      transition: all 0.15s;
+    }
+    .save-btn:hover {
+      background: #FFFFFF;
+      color: #EF4444;
+      border-color: #FECACA;
+    }
+    .save-btn.saved {
+      color: #EF4444;
+      background: #FEF2F2;
+      border-color: #FCA5A5;
+    }
+
+    .job-role-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+    .job-company-name {
+      font-size: 13px;
+      color: var(--slate-600);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .verified-icon {
+      color: var(--accent-emerald);
+      flex-shrink: 0;
+    }
+
+    .job-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .job-tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      background: var(--slate-100);
+      color: var(--slate-700);
+    }
+    .job-tag.tag-amber {
+      background: var(--accent-amber-light);
+      color: #92400E;
+    }
+    .job-tag.tag-blue {
+      background: #EFF6FF;
+      color: #1E40AF;
+    }
+    .job-tag.tag-emerald {
+      background: var(--accent-emerald-light);
+      color: #065F46;
+    }
+
+    .job-card-foot {
+      padding-top: 14px;
+      border-top: 1px solid var(--slate-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .job-salary {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .job-salary small {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--slate-400);
+    }
+
+    /* BENTO ENTERPRISE ECOSYSTEM */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .bento-card {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .bento-card:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(37, 99, 235, 0.3);
+      transform: translateY(-3px);
+    }
+    .bento-card.col-span-2 {
+      grid-column: span 2;
+    }
+    .bento-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: #EFF6FF;
+      color: var(--accent-blue);
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+    }
+    .bento-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 10px;
+    }
+    .bento-card p {
+      font-size: 14px;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* STANDALONE ATS RESUME STUDIO */
+    .cv-studio-section {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+      border-top: 1px solid var(--slate-200);
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .cv-studio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+    .cv-form-card {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--slate-700);
+      margin-bottom: 6px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      background: var(--slate-50);
+      color: var(--slate-900);
+      font-size: 13.5px;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      background: #FFFFFF;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .cv-preview-card {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.12);
+      overflow: hidden;
+      position: sticky;
+      top: 96px;
+    }
+    .cv-preview-topbar {
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cv-ats-score-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .cv-sheet {
+      padding: 32px;
+      background: #FFFFFF;
+      font-size: 13px;
+      color: #1E293B;
+      line-height: 1.55;
+    }
+    .cv-sheet-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+    .cv-sheet-contact {
+      color: var(--slate-500);
+      font-size: 11.5px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cv-sheet-section-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1.5px solid var(--slate-200);
+      padding-bottom: 4px;
+      margin: 14px 0 8px;
+    }
+    .cv-sheet-content {
+      font-size: 12px;
+      color: var(--slate-700);
+    }
+
+    /* CAREER WORKSHOP ACADEMY */
+    .academy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .academy-card {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .academy-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+    .academy-card-img {
+      height: 135px;
+      background: linear-gradient(135deg, #0F2647 0%, #1E40AF 100%);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #FFFFFF;
+    }
+    .academy-card-badge {
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      align-self: flex-start;
+    }
+    .academy-card-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .academy-card-body h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 8px;
+    }
+    .academy-card-body p {
+      font-size: 13px;
+      color: var(--slate-600);
+      margin-bottom: 16px;
+    }
+
+    /* COMMERCIAL PRICING */
+    .pricing-toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .pricing-toggle {
+      background: var(--slate-200);
+      padding: 4px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+    }
+    .pricing-toggle button {
+      padding: 7px 18px;
+      border-radius: var(--radius-full);
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-600);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pricing-toggle button.active {
+      background: #FFFFFF;
+      color: var(--primary);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+    }
+    .pricing-save-pill {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-light);
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .pricing-card {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-xl);
+      padding: 36px 28px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .pricing-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--accent-blue);
+      box-shadow: 0 16px 36px -4px rgba(37, 99, 235, 0.16);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #2563EB 0%, #1D4ED8 100%);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    .pricing-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 6px;
+    }
+    .pricing-desc {
+      font-size: 13px;
+      color: var(--slate-500);
+      margin-bottom: 20px;
+    }
+    .pricing-price {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .pricing-price small {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate-500);
+    }
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .pricing-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--slate-700);
+    }
+    .pricing-feature-item svg {
+      color: var(--accent-emerald);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* COMPLIANCE & SAFETY STRIP */
+    .safety-banner {
+      background: linear-gradient(135deg, #09172B 0%, #0F2647 100%);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      color: #FFFFFF;
+      margin-top: 56px;
+    }
+    .safety-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .safety-item {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+    .safety-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #93C5FD;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .safety-item p {
+      font-size: 12.5px;
+      color: #CBD5E1;
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #09172B;
+      color: #94A3B8;
+      padding: 64px 0 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-col h5 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-link {
+      font-size: 13px;
+      color: #94A3B8;
+      transition: color 0.15s;
+    }
+    .footer-link:hover {
+      color: #FFFFFF;
+    }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12px;
+    }
+
+    /* MODAL OVERLAY */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-box {
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      max-width: 580px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.35);
+      border: 1px solid var(--slate-200);
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--slate-100);
+      border: none;
+      border-radius: var(--radius-full);
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: var(--slate-500);
+      transition: all 0.15s;
+    }
+    .modal-close-btn:hover {
+      background: var(--slate-200);
+      color: var(--slate-900);
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .jobs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .bento-card.col-span-2 {
+        grid-column: span 1;
+      }
+      .cv-studio-grid {
+        grid-template-columns: 1fr;
+      }
+      .cv-preview-card {
+        position: static;
+      }
+      .academy-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-actions {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .search-inputs {
+        grid-template-columns: 1fr;
+      }
+      .jobs-grid {
+        grid-template-columns: 1fr;
+      }
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+      .academy-grid {
+        grid-template-columns: 1fr;
+      }
+      .safety-grid {
+        grid-template-columns: 1fr;
+      }
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* MOBILE DRAWER */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--slate-200);
+      padding: 20px 24px;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.1);
+      z-index: 39;
+    }
+    .mobile-drawer.open {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-drawer a {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--slate-700);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--slate-100);
+    }
+
+    /* PRINT STYLES FOR CV */
+    @media print {
+      body.printing-cv-only * {
+        visibility: hidden !important;
+      }
+      body.printing-cv-only #cvPrintArea,
+      body.printing-cv-only #cvPrintArea * {
+        visibility: visible !important;
+      }
+      body.printing-cv-only #cvPrintArea {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 15mm !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      @page {
+        margin: 10mm;
+      }
+      .navbar {
+        position: static !important;
+      }
+      .menu-toggle, .modal-overlay, .mobile-drawer {
+        display: none !important;
+      }
+      .job-card, .bento-card, .academy-card, .pricing-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #CBD5E1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP CORPORATE UTILITY BAR -->
+  <aside class="top-bar">
+    <div class="container top-bar-inner">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span class="top-bar-badge"><span class="top-bar-pulse"></span> Semarang Base</span>
+        <span>Early-career and youth opportunity network based in Semarang, Central Java.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <a href="#employers" style="color:#93C5FD;font-weight:600;display:flex;align-items:center;gap:4px">
+          For Employers
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand-logo" href="#home" aria-label="KitabisaKerja Home">
+        <svg class="brand-logo-emblem" viewBox="0 0 100 100" width="36" height="36">
+          <g transform="translate(50,50)">
+            <g>
+              <circle cx="0" cy="-28" r="6.5" fill="#FF5E36"/>
+              <path d="M -16 -18 C -6 -22, 6 -22, 16 -18 C 13 -9, 7 -5, 0 -5 C -7 -5, -13 -9, -16 -18 Z" fill="#FF6A3D"/>
+            </g>
+            <g transform="rotate(90)">
+              <circle cx="0" cy="-28" r="6.5" fill="#FBBF24"/>
+              <path d="M -16 -18 C -6 -22, 6 -22, 16 -18 C 13 -9, 7 -5, 0 -5 C -7 -5, -13 -9, -16 -18 Z" fill="#FBBF24"/>
+            </g>
+            <g transform="rotate(180)">
+              <circle cx="0" cy="-28" r="6.5" fill="#0284C7"/>
+              <path d="M -16 -18 C -6 -22, 6 -22, 16 -18 C 13 -9, 7 -5, 0 -5 C -7 -5, -13 -9, -16 -18 Z" fill="#0284C7"/>
+            </g>
+            <g transform="rotate(270)">
+              <circle cx="0" cy="-28" r="6.5" fill="#10B981"/>
+              <path d="M -16 -18 C -6 -22, 6 -22, 16 -18 C 13 -9, 7 -5, 0 -5 C -7 -5, -13 -9, -16 -18 Z" fill="#10B981"/>
+            </g>
+          </g>
+        </svg>
+        <div class="brand-logo-text">
+          <span class="logo-kitabisa">Kitabisa</span>
+          <span class="logo-kerja-badge">Kerja.id</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#jobs">Explore Roles</a>
+        <a class="nav-link" href="#cv-studio">ATS CV Studio</a>
+        <a class="nav-link" href="#features">Ecosystem</a>
+        <a class="nav-link" href="#pricing">Pricing</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm" href="#jobs">
+          <span>Explore Roles</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="#home" onclick="toggleMobileMenu()">Home</a>
+      <a href="#jobs" onclick="toggleMobileMenu()">Explore Roles</a>
+      <a href="#cv-studio" onclick="toggleMobileMenu()">ATS CV Studio</a>
+      <a href="#features" onclick="toggleMobileMenu()">Ecosystem</a>
+      <a href="#pricing" onclick="toggleMobileMenu()">Pricing</a>
+        <div style="margin-top:10px">
+          <a class="btn btn-primary" style="width:100%" href="#jobs" onclick="toggleMobileMenu()">Explore Roles</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-left" id="heroLeft">
+          <div class="pill-kicker">
+            <span class="pill-kicker-dot"></span>
+            <span>Semarang Youth Opportunity Network</span>
+          </div>
+
+          <h1 class="hero-title">
+            First Steps to Your Career.<br>
+            <span class="highlight-blue">Built for Beginners.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Find verified internships, part-time jobs, and entry-level positions in Semarang and remote. 100% free for jobseekers with transparent compensation.
+          </p>
+
+          <!-- UNIFIED SEARCH CONSOLE -->
+          <div class="search-console">
+            <div class="search-inputs">
+              <div class="search-field">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input id="heroKeyword" type="text" placeholder="Job title, role, or skill (e.g. Barista, Social Media, Design)">
+              </div>
+              <div class="search-field">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <select id="heroLocation">
+                  <option value="">All Locations</option>
+                  <option value="Semarang">Semarang</option>
+                  <option value="Remote">Remote</option>
+                </select>
+              </div>
+              <div class="search-field">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                <select id="heroType">
+                  <option value="">All Types</option>
+                  <option value="Internship">Internship</option>
+                  <option value="Part-time">Part-Time</option>
+                  <option value="Freelance">Freelance</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" onclick="executeHeroSearch()">
+                <span>Search</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-proof-row">
+            <div class="hero-proof-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              <span>Verified Employers in Semarang</span>
+            </div>
+            <div class="hero-proof-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>100% Free for Applicants</span>
+            </div>
+            <div class="hero-proof-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>
+              <span>Beginner Friendly</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO TALENT INTAKE CONSOLE -->
+        <div class="pipeline-card-wrap" id="heroRight">
+          <div class="pipeline-card">
+            <div class="pipeline-header">
+              <span class="pipeline-tag"><span class="pipeline-pulse-dot"></span> Curated Opportunities</span>
+              <span style="font-size:12px;color:var(--slate-400)">Verified Listings</span>
+            </div>
+
+            <div class="pipeline-stats-row">
+              <div class="pipeline-stat-box">
+                <div class="pipeline-stat-val">Verified</div>
+                <div class="pipeline-stat-lbl">Employers</div>
+              </div>
+              <div class="pipeline-stat-box">
+                <div class="pipeline-stat-val">Rp 0</div>
+                <div class="pipeline-stat-lbl">Candidate Fees</div>
+              </div>
+              <div class="pipeline-stat-box">
+                <div class="pipeline-stat-val">Flexible</div>
+                <div class="pipeline-stat-lbl">Work Schedules</div>
+              </div>
+            </div>
+
+            <div class="live-roles-feed">
+              <div class="feed-role-item">
+                <div class="feed-role-meta">
+                  <b>Social Media Intern</b>
+                  <span>Studio Sora · Jakarta / Hybrid</span>
+                </div>
+                <span class="feed-badge">Rp 1.5–2.5 jt/mo</span>
+              </div>
+              <div class="feed-role-item">
+                <div class="feed-role-meta">
+                  <b>Part-time Barista</b>
+                  <span>Brew & Co. · Semarang</span>
+                </div>
+                <span class="feed-badge">Rp 20–25 rb/hr</span>
+              </div>
+              <div class="feed-role-item">
+                <div class="feed-role-meta">
+                  <b>Graphic Design Intern</b>
+                  <span>Pixel Works · Remote</span>
+                </div>
+                <span class="feed-badge">Project-based</span>
+              </div>
+            </div>
+
+            <div style="margin-top:18px">
+              <a href="#jobs" class="btn btn-secondary btn-sm" style="width:100%">
+                <span>Browse All Opportunities</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Floating Institutional Badges -->
+          <div class="floating-badge float-top" id="floatTop">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <span>Verified Employers</span>
+          </div>
+
+          <div class="floating-badge float-bottom" id="floatBottom">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Beginner Friendly</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MACRO BENCHMARKS & VERIFICATION STANDARDS -->
+    <section class="impact-section">
+      <div class="container impact-grid" id="impactGrid">
+        <div class="impact-card">
+          <div class="impact-num">13.14<span>%</span></div>
+          <div class="impact-label">Youth Unemployment Benchmark</div>
+          <div class="impact-sub">Official BPS National Labor Force Survey (Sakernas) data reflecting the early-career market gap we solve.</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">Zero<span>Fee</span></div>
+          <div class="impact-label">Applicant Protection Policy</div>
+          <div class="impact-sub">Full legal compliance prohibiting recruitment fees, test deductions, or mandatory upfront onboarding charges.</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">100<span>%</span></div>
+          <div class="impact-label">Corporate Vetting Standard</div>
+          <div class="impact-sub">Verification of company legal identity, active commercial registration, and verified physical/virtual offices.</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-num">Semarang<span>Hub</span></div>
+          <div class="impact-label">Central Java Base</div>
+          <div class="impact-sub">Focused on connecting youth in Semarang with verified local employers and remote roles.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPPORTUNITY CATALOG (#jobs) -->
+    <section class="section" id="jobs">
+      <div class="container">
+        <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px">
+          <div>
+            <div class="section-kicker">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m12 6 4 6h-8z"/></svg>
+              <span>Verified Career Board</span>
+            </div>
+            <h2 class="section-title">Open Early-Career Opportunities</h2>
+            <p class="section-desc">Every role is screened for compensation transparency, structured onboarding, and beginner-compatible qualifications.</p>
+          </div>
+          <div style="font-size:13px;color:var(--slate-500);font-weight:600">
+            Displaying <span id="jobCountBadge" style="color:var(--accent-blue);font-weight:800">6</span> Verified Roles
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="jobs-filter-bar">
+          <div class="filter-pills" id="typePills">
+            <button class="filter-pill active" onclick="setTypeFilter('', this)">All Types</button>
+            <button class="filter-pill" onclick="setTypeFilter('Internship', this)">Internship</button>
+            <button class="filter-pill" onclick="setTypeFilter('Part-time', this)">Part-Time</button>
+            <button class="filter-pill" onclick="setTypeFilter('Freelance', this)">Freelance</button>
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <select id="locationSelectFilter" onchange="runFilters()" style="padding:7px 12px;border:1px solid var(--slate-200);border-radius:var(--radius-md);background:#fff;font-size:13px;color:var(--slate-700);outline:none">
+              <option value="">All Locations</option>
+              <option value="Jakarta">Jakarta</option>
+              <option value="Semarang">Semarang</option>
+              <option value="Remote">Remote</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Job Cards Grid -->
+        <div class="jobs-grid" id="jobsContainer">
+          <!-- Role 1 -->
+          <article class="job-card" data-title="social media intern" data-type="Internship" data-location="Jakarta">
+            <div>
+              <div class="job-card-top">
+                <div class="company-avatar" style="background:#EFF6FF;color:#1E40AF">S</div>
+                <button class="save-btn" onclick="toggleSaveJob(this)" aria-label="Save position">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </button>
+              </div>
+              <h3 class="job-role-title">Social Media Intern</h3>
+              <div class="job-company-name">
+                <span>Studio Sora</span>
+                <svg class="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>· Jakarta / Hybrid</span>
+              </div>
+              <div class="job-tags">
+                <span class="job-tag tag-blue">Internship</span>
+                <span class="job-tag tag-amber">Beginner friendly</span>
+                <span class="job-tag">Creative</span>
+              </div>
+            </div>
+            <div class="job-card-foot">
+              <div class="job-salary">Rp 1.5–2.5 jt <small>/month</small></div>
+              <button class="btn btn-secondary btn-sm" onclick="openJobDetail('Social Media Intern', 'Studio Sora', 'Jakarta / Hybrid', 'Internship', 'Rp 1.5–2.5 jt / month', 'Assist with social media content planning, visual asset creation, and community interaction.', 'Passionate about creative storytelling, eager to learn. No prior experience required.')">
+                View Role
+              </button>
+            </div>
+          </article>
+
+          <!-- Role 2 -->
+          <article class="job-card" data-title="part-time barista" data-type="Part-time" data-location="Semarang">
+            <div>
+              <div class="job-card-top">
+                <div class="company-avatar" style="background:#FFF0DF;color:#92400E">B</div>
+                <button class="save-btn" onclick="toggleSaveJob(this)" aria-label="Save position">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </button>
+              </div>
+              <h3 class="job-role-title">Part-time Barista</h3>
+              <div class="job-company-name">
+                <span>Brew & Co.</span>
+                <svg class="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>· Semarang</span>
+              </div>
+              <div class="job-tags">
+                <span class="job-tag tag-emerald">Part-time</span>
+                <span class="job-tag tag-amber">No experience required</span>
+                <span class="job-tag">On-site</span>
+              </div>
+            </div>
+            <div class="job-card-foot">
+              <div class="job-salary">Rp 20–25 rb <small>/hour</small></div>
+              <button class="btn btn-secondary btn-sm" onclick="openJobDetail('Part-time Barista', 'Brew & Co.', 'Semarang', 'Part-time', 'Rp 20–25 rb / hour', 'Prepare beverages, assist customers with friendly hospitality, and maintain bar cleanliness.', 'Friendly attitude, punctual. Training provided on-site.')">
+                View Role
+              </button>
+            </div>
+          </article>
+
+          <!-- Role 3 -->
+          <article class="job-card" data-title="graphic design intern" data-type="Internship" data-location="Remote">
+            <div>
+              <div class="job-card-top">
+                <div class="company-avatar" style="background:#F0EAFF;color:#5B21B6">G</div>
+                <button class="save-btn" onclick="toggleSaveJob(this)" aria-label="Save position">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </button>
+              </div>
+              <h3 class="job-role-title">Graphic Design Intern</h3>
+              <div class="job-company-name">
+                <span>Pixel Works</span>
+                <svg class="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>· Remote</span>
+              </div>
+              <div class="job-tags">
+                <span class="job-tag tag-blue">Internship</span>
+                <span class="job-tag tag-emerald">Remote</span>
+                <span class="job-tag tag-amber">Portfolio welcome</span>
+              </div>
+            </div>
+            <div class="job-card-foot">
+              <div class="job-salary">Project-based</div>
+              <button class="btn btn-secondary btn-sm" onclick="openJobDetail('Graphic Design Intern', 'Pixel Works', 'Remote', 'Internship', 'Project-based', 'Create digital assets, marketing visuals, and presentation layouts.', 'Familiarity with Canva, Figma, or Adobe tools. Personal or school projects welcome.')">
+                View Role
+              </button>
+            </div>
+          </article>
+
+          <!-- Role 4 -->
+          <article class="job-card" data-title="online shop assistant" data-type="Part-time" data-location="Semarang">
+            <div>
+              <div class="job-card-top">
+                <div class="company-avatar" style="background:#E7F5EE;color:#065F46">O</div>
+                <button class="save-btn" onclick="toggleSaveJob(this)" aria-label="Save position">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </button>
+              </div>
+              <h3 class="job-role-title">Online Shop Assistant</h3>
+              <div class="job-company-name">
+                <span>Daily Goods</span>
+                <svg class="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>· Semarang</span>
+              </div>
+              <div class="job-tags">
+                <span class="job-tag tag-emerald">Part-time</span>
+                <span class="job-tag">Flexible hours</span>
+                <span class="job-tag tag-amber">Entry-level</span>
+              </div>
+            </div>
+            <div class="job-card-foot">
+              <div class="job-salary">Rp 1–1.8 jt <small>/month</small></div>
+              <button class="btn btn-secondary btn-sm" onclick="openJobDetail('Online Shop Assistant', 'Daily Goods', 'Semarang', 'Part-time', 'Rp 1–1.8 jt / month', 'Manage daily order processing, packaging coordination, and customer inquiries.', 'Accurate, responsible, and comfortable working with basic spreadsheet apps.')">
+                View Role
+              </button>
+            </div>
+          </article>
+
+          <!-- Role 5 -->
+          <article class="job-card" data-title="private tutor" data-type="Freelance" data-location="Semarang">
+            <div>
+              <div class="job-card-top">
+                <div class="company-avatar" style="background:#FFF3D8;color:#92400E">T</div>
+                <button class="save-btn" onclick="toggleSaveJob(this)" aria-label="Save position">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </button>
+              </div>
+              <h3 class="job-role-title">Private Tutor</h3>
+              <div class="job-company-name">
+                <span>LearnMate</span>
+                <svg class="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>· Semarang</span>
+              </div>
+              <div class="job-tags">
+                <span class="job-tag tag-blue">Freelance</span>
+                <span class="job-tag">Flexible</span>
+                <span class="job-tag tag-amber">Skill-based</span>
+              </div>
+            </div>
+            <div class="job-card-foot">
+              <div class="job-salary">Rp 50–100 rb <small>/session</small></div>
+              <button class="btn btn-secondary btn-sm" onclick="openJobDetail('Private Tutor', 'LearnMate', 'Semarang', 'Freelance', 'Rp 50–100 rb / session', 'Provide one-on-one tutoring for junior and senior high school students in math or science.', 'Solid understanding of academic subjects, patient, and good interpersonal communication.')">
+                View Role
+              </button>
+            </div>
+          </article>
+
+          <!-- Role 6 -->
+          <article class="job-card" data-title="junior content creator" data-type="Freelance" data-location="Remote">
+            <div>
+              <div class="job-card-top">
+                <div class="company-avatar" style="background:#FFE8EC;color:#9F1239">C</div>
+                <button class="save-btn" onclick="toggleSaveJob(this)" aria-label="Save position">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </button>
+              </div>
+              <h3 class="job-role-title">Junior Content Creator</h3>
+              <div class="job-company-name">
+                <span>Bright Media</span>
+                <svg class="verified-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>· Remote</span>
+              </div>
+              <div class="job-tags">
+                <span class="job-tag tag-blue">Freelance</span>
+                <span class="job-tag tag-emerald">Remote</span>
+                <span class="job-tag tag-amber">Creative</span>
+              </div>
+            </div>
+            <div class="job-card-foot">
+              <div class="job-salary">Per project</div>
+              <button class="btn btn-secondary btn-sm" onclick="openJobDetail('Junior Content Creator', 'Bright Media', 'Remote', 'Freelance', 'Per project', 'Draft short-form video scripts, brainstorm social hooks, and create content briefs.', 'Understanding of TikTok/Reels formats and passionate about digital media.')">
+                View Role
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <div id="emptyJobState" style="display:none;text-align:center;padding:54px 20px;background:#fff;border-radius:var(--radius-xl);border:1px dashed var(--slate-300);margin-top:20px">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--slate-400)" stroke-width="1.8" style="margin-bottom:12px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <h4 style="font-size:16px;font-weight:700;color:var(--slate-800)">No Positions Match Your Criteria</h4>
+          <p style="font-size:13px;color:var(--slate-500);margin-top:4px">Try clearing filters or searching a different keyword or location.</p>
+          <button class="btn btn-secondary btn-sm" style="margin-top:14px" onclick="resetJobFilters()">Reset All Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STANDALONE ATS RESUME STUDIO (#cv-studio) -->
+    <section class="section cv-studio-section" id="cv-studio">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Standardized Career Studio</span>
+          </div>
+          <h2 class="section-title">Institutional ATS Resume Engine</h2>
+          <p class="section-desc">Format your academic background, technical projects, and extracurricular leadership into an ATS-compliant, recruiter-standard executive resume.</p>
+        </div>
+
+        <div class="cv-studio-grid">
+          <!-- Form Inputs -->
+          <div class="cv-form-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+              <h3 style="font-size:17px;font-weight:800;color:var(--primary)">1. Candidate Information</h3>
+              <span style="font-size:11px;color:var(--slate-400);font-weight:600">Workday & Lever Standard</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Legal Name</label>
+                <input id="cvInputName" type="text" value="Arya Pratama Kusuma" placeholder="Full name" oninput="updateCvPreview()">
+              </div>
+              <div class="form-group">
+                <label>Email & Contact Number</label>
+                <input id="cvInputContact" type="text" value="arya.kusuma@domain.com • +62 812-3456-7890" placeholder="Contact details" oninput="updateCvPreview()">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Education & Academic Degree</label>
+              <input id="cvInputEdu" type="text" value="Universitas Indonesia — B.Sc. Computer Science (2022–2026) • GPA 3.78/4.00" placeholder="University, Major, Graduation Year" oninput="updateCvPreview()">
+            </div>
+
+            <div class="form-group">
+              <label>Executive Professional Summary</label>
+              <textarea id="cvInputSummary" rows="2" placeholder="Summary statement..." oninput="updateCvPreview()">Final-year Computer Science undergraduate with hands-on experience in full-stack web applications, relational databases, and enterprise data modeling. Seeking an entry-level software engineering or technical analyst role.</textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Core Technical & Functional Skills</label>
+              <input id="cvInputSkills" type="text" value="TypeScript, React, Python, PostgreSQL, REST APIs, Git, Financial Modeling, Agile Scrum" placeholder="Comma-separated skills" oninput="updateCvPreview()">
+            </div>
+
+            <div class="form-group">
+              <label>Projects, Leadership & Internships</label>
+              <textarea id="cvInputExp" rows="3" placeholder="Key projects and measurable outcomes..." oninput="updateCvPreview()">• Lead Developer, Campus Research Data Platform: Engineered an automated ingest pipeline serving 1,200+ monthly active student researchers.
+• Vice President, Computer Science Student Society: Managed annual tech conference budget of IDR 45M across 6 enterprise corporate sponsors.</textarea>
+            </div>
+
+            <div style="display:flex;gap:12px;margin-top:24px">
+              <button class="btn btn-primary" onclick="printCv()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+                <span>Export Standard ATS PDF</span>
+              </button>
+              <button class="btn btn-secondary" onclick="loadBusinessSample()">
+                Load Business Sample
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Preview Sheet -->
+          <div class="cv-preview-card" id="cvPrintArea">
+            <div class="cv-preview-topbar">
+              <div style="display:flex;align-items:center;gap:8px">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12l5-5m-5 5 5 5"/></svg>
+                <span style="font-weight:700;font-size:13px">Live ATS Parser Inspection</span>
+              </div>
+              <div class="cv-ats-score-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span id="atsScoreValue">ATS Score: 94/100</span>
+              </div>
+            </div>
+
+            <div class="cv-sheet">
+              <div class="cv-sheet-name" id="previewName">Arya Pratama Kusuma</div>
+              <div class="cv-sheet-contact" id="previewContact">arya.kusuma@domain.com • +62 812-3456-7890 • Jakarta, Indonesia</div>
+
+              <div class="cv-sheet-section-title">PROFESSIONAL SUMMARY</div>
+              <div class="cv-sheet-content" id="previewSummary">
+                Final-year Computer Science undergraduate with hands-on experience in full-stack web applications, relational databases, and enterprise data modeling. Seeking an entry-level software engineering or technical analyst role.
+              </div>
+
+              <div class="cv-sheet-section-title">EDUCATION</div>
+              <div class="cv-sheet-content" id="previewEdu">
+                <b>Universitas Indonesia</b> — B.Sc. Computer Science (2022–2026) • GPA 3.78/4.00
+              </div>
+
+              <div class="cv-sheet-section-title">TECHNICAL & CORE COMPETENCIES</div>
+              <div class="cv-sheet-content" id="previewSkills">
+                TypeScript, React, Python, PostgreSQL, REST APIs, Git, Financial Modeling, Agile Scrum
+              </div>
+
+              <div class="cv-sheet-section-title">KEY PROJECTS & LEADERSHIP EXPERIENCE</div>
+              <div class="cv-sheet-content" id="previewExp" style="white-space:pre-line">
+                • Lead Developer, Campus Research Data Platform: Engineered an automated ingest pipeline serving 1,200+ monthly active student researchers.
+                • Vice President, Computer Science Student Society: Managed annual tech conference budget of IDR 45M across 6 enterprise corporate sponsors.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENTERPRISE ECOSYSTEM BENTO (#features) -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+            <span>Platform Infrastructure</span>
+          </div>
+          <h2 class="section-title">Built for Scalable Early-Career Hiring</h2>
+          <p class="section-desc">A structured operational ecosystem designed to bridge national workforce readiness with enterprise talent acquisition requirements.</p>
+        </div>
+
+        <div class="bento-grid" id="bentoGrid">
+          <!-- Bento 1 -->
+          <div class="bento-card col-span-2">
+            <div>
+              <div class="bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+              </div>
+              <h3>Competency-Based Talent Matching</h3>
+              <p>Eliminate arbitrary experience barriers. Our matching framework evaluates demonstrated technical proficiency, verified project artifacts, and coursework relevance to connect early professionals with high-growth teams.</p>
+            </div>
+            <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
+              <span class="job-tag tag-blue">Project Artifact Evaluation</span>
+              <span class="job-tag tag-emerald">Structured Onboarding</span>
+              <span class="job-tag tag-amber">Direct Interview Routing</span>
+            </div>
+          </div>
+
+          <!-- Bento 2 -->
+          <div class="bento-card">
+            <div>
+              <div class="bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Zero-Fraud Verification Firewall</h3>
+              <p>Every corporate partner undergoes commercial entity validation (NIB/TDP) to ensure absolute protection against fraudulent placement practices.</p>
+            </div>
+            <div style="margin-top:20px;font-size:12px;font-weight:700;color:var(--accent-emerald)">
+              ✓ 100% Commercial Entity Vetting
+            </div>
+          </div>
+
+          <!-- Bento 3 -->
+          <div class="bento-card">
+            <div>
+              <div class="bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>
+              </div>
+              <h3>Workplace Readiness Sprints</h3>
+              <p>Structured curriculum modules: financial modeling, SQL data querying, cross-functional stakeholder communication, and technical interview simulations.</p>
+            </div>
+            <div style="margin-top:20px">
+              <a href="#cv-studio" style="font-size:13px;font-weight:700;color:var(--accent-blue)">Build Your ATS Resume →</a>
+            </div>
+          </div>
+
+          <!-- Bento 4 -->
+          <div class="bento-card col-span-2">
+            <div>
+              <div class="bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Enterprise & Academic Talent Partnerships</h3>
+              <p>Streamline campus recruiting pipelines and structured university internship credits. For corporate HR teams, KitabisaKerja delivers pre-qualified entry talent pools with verified competencies.</p>
+            </div>
+            <div style="margin-top:20px;display:flex;gap:12px">
+              <button class="btn btn-primary btn-sm" onclick="openModal('employer')">Corporate Employer Portal</button>
+              <button class="btn btn-secondary btn-sm" onclick="openModal('school')">University Partnership</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- COMMERCIAL PRICING & TIERS (#pricing) -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-header" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto">
+          <div class="section-kicker" style="justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Straightforward Pricing</span>
+          </div>
+          <h2 class="section-title">Transparent Membership & Enterprise Solutions</h2>
+          <p class="section-desc">Candidate core features remain free forever. Pro unlocks advanced ATS optimization and priority recruitment exposure.</p>
+        </div>
+
+        <div class="pricing-toggle-wrap">
+          <div class="pricing-toggle">
+            <button class="active" id="btnMonthly" onclick="setBillingCycle('monthly')">Monthly Billing</button>
+            <button id="btnYearly" onclick="setBillingCycle('yearly')">Annual Billing</button>
+          </div>
+          <span class="pricing-save-pill">Save ~17% (Approx. Rp 16.667/mo)</span>
+        </div>
+        <div class="pricing-grid">
+          <!-- Free -->
+          <div class="pricing-card">
+            <div>
+              <div class="pricing-title">Free</div>
+              <div class="pricing-desc">A strong first step into the world of work.</div>
+              <div class="pricing-price">Rp 0 <small>/ forever</small></div>
+              <ul class="pricing-features">
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Browse job opportunities</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Apply to available listings</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Basic CV Builder</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Save favorite jobs</span>
+                </li>
+              </ul>
+            </div>
+            <button class="btn btn-secondary" style="width:100%" onclick="openModal('register')">Get Started Free</button>
+          </div>
+
+          <!-- Pro -->
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Most Popular</div>
+            <div>
+              <div class="pricing-title">KitabisaKerja Pro</div>
+              <div class="pricing-desc">Extra tools to stand out and prepare your strengths.</div>
+              <div class="pricing-price" id="proPriceDisplay">
+                Rp 19.999 <small>/ month</small>
+              </div>
+              <ul class="pricing-features">
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Everything in Free</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Unlimited CV creation</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Premium CV templates</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>AI-assistance for improvements</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Personalized job recommendations</span>
+                </li>
+              </ul>
+            </div>
+            <button class="btn btn-primary" style="width:100%" onclick="openCheckoutModal('pro')">Choose Pro</button>
+          </div>
+
+          <!-- Employer B2B -->
+          <div class="pricing-card" id="employers">
+            <div>
+              <div class="pricing-title">For Employers</div>
+              <div class="pricing-desc">Connect with motivated emerging talent ready to learn and contribute.</div>
+              <div class="pricing-price">Partnership <small>/ custom</small></div>
+              <ul class="pricing-features">
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Post verified opportunities</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Access motivated early-career talent pool</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Employer profile & role branding</span>
+                </li>
+                <li class="pricing-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Direct candidate pipeline support</span>
+                </li>
+              </ul>
+            </div>
+            <button class="btn btn-secondary" style="width:100%" onclick="openModal('employer')">Contact Team</button>
+          </div>
+        </div>
+
+        <!-- Compliance & Legal Protection -->
+        <div class="safety-banner">
+          <div style="display:flex;align-items:center;gap:12px">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <h3 style="font-size:18px;font-weight:800;color:#FFFFFF">National Employment Regulatory Compliance</h3>
+          </div>
+          <p style="font-size:13.5px;color:#CBD5E1;margin-top:6px">In adherence to Indonesian Manpower Law No. 13/2003 and modern corporate ethics standards:</p>
+          <div class="safety-grid">
+            <div class="safety-item">
+              <h4>1. Strict Zero-Placement Fee</h4>
+              <p>Employers on KitabisaKerja are legally bound not to charge administrative, testing, or processing fees of any kind.</p>
+            </div>
+            <div class="safety-item">
+              <h4>2. Verified Corporate Entities</h4>
+              <p>All job postings require formal validation of business registration (NIB), legitimate tax ID (NPWP), and verified corporate domains.</p>
+            </div>
+            <div class="safety-item">
+              <h4>3. Structured Candidate Privacy</h4>
+              <p>Personal data is strictly protected under Law No. 27/2022 on Personal Data Protection (UU PDP) and never monetized to third parties.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section style="padding:72px 0;background:linear-gradient(135deg, #0F2647 0%, #1E3A8A 100%);color:#fff">
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
+        <div>
+          <h2 style="font-size:clamp(26px, 3.2vw, 38px);font-weight:800;letter-spacing:-0.03em;color:#fff;margin-bottom:8px">
+            Ready to Build Your Early Career Pipeline?
+          </h2>
+          <p style="font-size:15px;color:#CBD5E1;max-width:560px">
+            Join thousands of emerging professionals and top Indonesian employers advancing verified early-career recruitment.
+          </p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-amber btn-lg" href="#jobs">
+            <span>Explore Opportunities</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+          </a>
+          <button class="btn btn-secondary btn-lg" onclick="openModal('employer')">
+            <span>For Employers</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand-logo" href="#home" style="margin-bottom:14px">
+            <svg class="brand-logo-emblem" viewBox="0 0 100 100" width="34" height="34">
+              <g transform="translate(50,50)">
+                <g>
+                  <circle cx="0" cy="-28" r="6.5" fill="#FF5E36"/>
+                  <path d="M -16 -18 C -6 -22, 6 -22, 16 -18 C 13 -9, 7 -5, 0 -5 C -7 -5, -13 -9, -16 -18 Z" fill="#FF6A3D"/>
+                </g>
+                <g transform="rotate(90)">
+                  <circle cx="0" cy="-28" r="6.5" fill="#FBBF24"/>
+                  <path d="M -16 -18 C -6 -22, 6 -22, 16 -18 C 13 -9, 7 -5, 0 -5 C -7 -5, -13 -9, -16 -18 Z" fill="#FBBF24"/>
+                </g>
+                <g transform="rotate(180)">
+                  <circle cx="0" cy="-28" r="6.5" fill="#0284C7"/>
+                  <path d="M -16 -18 C -6 -22, 6 -22, 16 -18 C 13 -9, 7 -5, 0 -5 C -7 -5, -13 -9, -16 -18 Z" fill="#0284C7"/>
+                </g>
+                <g transform="rotate(270)">
+                  <circle cx="0" cy="-28" r="6.5" fill="#10B981"/>
+                  <path d="M -16 -18 C -6 -22, 6 -22, 16 -18 C 13 -9, 7 -5, 0 -5 C -7 -5, -13 -9, -16 -18 Z" fill="#10B981"/>
+                </g>
+              </g>
+            </svg>
+            <div class="brand-logo-text">
+              <span class="logo-kitabisa" style="color:#38BDF8">Kitabisa</span>
+              <span class="logo-kerja-badge">Kerja.id</span>
+            </div>
+          </a>
+          <p style="font-size:13px;line-height:1.6;color:#94A3B8;max-width:320px;margin-bottom:16px">
+            Youth career opportunity network connecting students and fresh graduates in Semarang with verified local and remote positions.
+          </p>
+          <div style="font-size:12px;color:#64748B">
+            Headquartered in Semarang, Central Java, Indonesia.
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Candidates</h5>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="#jobs">Explore Internships</a></li>
+            <li><a class="footer-link" href="#jobs">Graduate Trainee Tracks</a></li>
+            <li><a class="footer-link" href="#jobs">Remote & Hybrid Work</a></li>
+            <li><a class="footer-link" href="#cv-studio">ATS Resume Studio</a></li>
+            <li><a class="footer-link" href="#pricing">Membership Plans</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Employers & B2B</h5>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="javascript:void(0)" onclick="openModal('employer')">Post Vacancies</a></li>
+            <li><a class="footer-link" href="javascript:void(0)" onclick="openModal('employer')">Campus Talent Pipelines</a></li>
+            <li><a class="footer-link" href="javascript:void(0)" onclick="openModal('school')">University Partnerships</a></li>
+            <li><a class="footer-link" href="#pricing">Enterprise Pricing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Compliance & Legal</h5>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="javascript:void(0)" onclick="openModal('safety')">Report Employer Irregularities</a></li>
+            <li><a class="footer-link" href="javascript:void(0)" onclick="openModal('faq')">Frequently Asked Questions</a></li>
+            <li><a class="footer-link" href="javascript:void(0)" onclick="openModal('privacy')">Privacy Policy (UU PDP)</a></li>
+            <li><a class="footer-link" href="javascript:void(0)" onclick="openModal('terms')">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 KitabisaKerja.id. All rights reserved.
+        </div>
+        <div style="display:flex;gap:18px">
+          <span style="color:#64748B">LinkedIn: KitabisaKerja</span>
+          <span style="color:#64748B">Email: contact@kitabisakerja.id</span>
+          <span style="color:#64748B">Indonesia</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- REUSABLE MODAL CONTAINER -->
+  <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close-btn" onclick="closeModal()" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC & FRAMER MOTION -->
+  <script>
+    let currentBilling = 'monthly';
+    let savedJobCount = 0;
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      drawer.classList.toggle('open');
+    }
+
+    function openModal(type, data = {}) {
+      const overlay = document.getElementById('modalOverlay');
+      const container = document.getElementById('modalContent');
+      let html = '';
+
+      if (type === 'jobDetail') {
+        html = `
+          <div style="margin-bottom:16px">
+            <span class="job-tag tag-blue" style="margin-bottom:8px;display:inline-block">${escapeHtml(data.type)}</span>
+            <h3 style="font-size:21px;font-weight:800;color:var(--primary)">${escapeHtml(data.title)}</h3>
+            <div style="font-size:13.5px;color:var(--slate-600);margin-top:4px">
+              <b>${escapeHtml(data.company)}</b> · ${escapeHtml(data.location)}
+            </div>
+          </div>
+          <div style="background:var(--slate-50);padding:14px;border-radius:var(--radius-md);margin-bottom:18px;border:1px solid var(--slate-200)">
+            <div style="font-size:12px;color:var(--slate-500)">Verified Compensation:</div>
+            <div style="font-size:16px;font-weight:800;color:var(--primary)">${escapeHtml(data.pay)}</div>
+          </div>
+          <div style="margin-bottom:16px">
+            <h4 style="font-size:13px;font-weight:700;color:var(--slate-800);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Role Responsibilities</h4>
+            <p style="font-size:13px;color:var(--slate-600);line-height:1.6">${escapeHtml(data.desc)}</p>
+          </div>
+          <div style="margin-bottom:20px">
+            <h4 style="font-size:13px;font-weight:700;color:var(--slate-800);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Candidate Requirements</h4>
+            <p style="font-size:13px;color:var(--slate-600);line-height:1.6">${escapeHtml(data.req)}</p>
+          </div>
+          <div style="border-top:1px solid var(--slate-200);padding-top:18px;display:flex;gap:12px">
+            <button class="btn btn-primary" style="flex:1" onclick="applyJob('${escapeHtml(data.title)}')">
+              Submit Direct Application
+            </button>
+            <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+          </div>
+          <div id="applyStatus" style="display:none;margin-top:12px;padding:12px;background:var(--accent-emerald-light);color:#065F46;border-radius:var(--radius-md);font-size:12.5px;font-weight:600"></div>
+        `;
+      } else if (type === 'employer') {
+        html = `
+          <div style="margin-bottom:18px">
+            <h3 style="font-size:20px;font-weight:800;color:var(--primary)">Enterprise Employer Inbound</h3>
+            <p style="font-size:13px;color:var(--slate-500)">Post verified early-career roles and recruit pre-screened talent.</p>
+          </div>
+          <form onsubmit="event.preventDefault(); handleModalSubmit('Corporate intake inquiry registered. Our enterprise team will respond within 24 hours.')">
+            <div class="form-group">
+              <label>Company / Organization Name</label>
+              <input required type="text" placeholder="e.g. PT Mandiri Solusi Pratama">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Official Corporate Email</label>
+                <input required type="email" placeholder="hr@company.com">
+              </div>
+              <div class="form-group">
+                <label>Direct Contact Phone</label>
+                <input required type="tel" placeholder="+62 21-xxxx / +62 811-xxxx">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Talent Pipeline Requirement</label>
+              <select required>
+                <option value="">Select recruitment category</option>
+                <option>Management Trainee Batch</option>
+                <option>University Internship Intake</option>
+                <option>Engineering & Technical Apprenticeships</option>
+                <option>Direct Hire Entry-Level Staff</option>
+              </select>
+            </div>
+            <div style="margin-top:20px">
+              <button class="btn btn-primary" style="width:100%" type="submit">Submit Corporate Request</button>
+            </div>
+            <div id="authNotice" style="margin-top:12px;font-size:12px;color:var(--accent-emerald);font-weight:600;display:none;text-align:center"></div>
+          </form>
+        `;
+      } else if (type === 'checkout') {
+        const isYear = currentBilling === 'yearly';
+        const price = isYear ? 'Rp 199.999' : 'Rp 19.999';
+        const period = isYear ? '/ year (~Rp 16.667/month)' : '/ month';
+        html = `
+          <div style="margin-bottom:18px">
+            <span class="job-tag tag-blue" style="margin-bottom:6px;display:inline-block">Account Upgrade</span>
+            <h3 style="font-size:20px;font-weight:800;color:var(--primary)">KitabisaKerja Candidate Pro</h3>
+            <p style="font-size:13px;color:var(--slate-500)">Unlock unlimited ATS resume exports, action verb optimization, and recruiter priority.</p>
+          </div>
+          <div style="background:var(--slate-50);border:1px solid var(--slate-200);border-radius:var(--radius-lg);padding:16px;margin-bottom:20px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline">
+              <span style="font-weight:700;color:var(--slate-700)">Selected Tier:</span>
+              <span style="font-size:22px;font-weight:800;color:var(--primary)">${price} <small style="font-size:12px;color:var(--slate-500);font-weight:500">${period}</small></span>
+            </div>
+          </div>
+          <div style="margin-bottom:16px">
+            <label style="font-size:12px;font-weight:700;color:var(--slate-700);display:block;margin-bottom:8px">Payment Channel:</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <div style="padding:10px;border:1px solid var(--accent-blue);background:#EFF6FF;border-radius:var(--radius-md);text-align:center;font-weight:700;font-size:12.5px;color:var(--accent-blue);cursor:pointer">QRIS / E-Wallet</div>
+              <div style="padding:10px;border:1px solid var(--slate-200);border-radius:var(--radius-md);text-align:center;font-weight:600;font-size:12.5px;color:var(--slate-700);cursor:pointer">Bank Virtual Account</div>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="width:100%" onclick="handleModalSubmit('Payment processed successfully. Candidate Pro is now active.')">Confirm Subscription</button>
+          <div id="authNotice" style="margin-top:12px;font-size:12px;color:var(--accent-emerald);font-weight:600;display:none;text-align:center"></div>
+        `;
+      } else if (type === 'safety') {
+        html = `
+          <div style="margin-bottom:16px">
+            <h3 style="font-size:20px;font-weight:800;color:var(--primary)">Regulatory & Safety Grievance</h3>
+            <p style="font-size:13px;color:var(--slate-500)">Report suspected recruitment irregularities or unauthorized placement fee requests.</p>
+          </div>
+          <form onsubmit="event.preventDefault(); handleModalSubmit('Grievance logged. Our compliance officer will audit the employer within 24 hours.')">
+            <div class="form-group">
+              <label>Employer / Vacancy Name</label>
+              <input required type="text" placeholder="Name of company or post">
+            </div>
+            <div class="form-group">
+              <label>Details of Violation</label>
+              <textarea required rows="3" placeholder="Provide details regarding the fee request, unverified contact, or discrepancy..."></textarea>
+            </div>
+            <button class="btn btn-primary" style="width:100%" type="submit">Submit Compliance Report</button>
+            <div id="authNotice" style="margin-top:12px;font-size:12px;color:var(--accent-emerald);font-weight:600;display:none;text-align:center"></div>
+          </form>
+        `;
+      } else if (type === 'faq') {
+        html = `
+          <h3 style="font-size:20px;font-weight:800;color:var(--primary);margin-bottom:16px">Frequently Asked Questions</h3>
+          <div style="display:flex;flex-direction:column;gap:14px;font-size:13px">
+            <div>
+              <b style="color:var(--slate-900);display:block;margin-bottom:2px">Are candidates ever charged placement fees?</b>
+              <p style="color:var(--slate-600)">Never. Under Indonesian Manpower regulations and KitabisaKerja terms, candidates cannot be charged recruitment, administration, or onboarding fees.</p>
+            </div>
+            <div>
+              <b style="color:var(--slate-900);display:block;margin-bottom:2px">How are employers vetted?</b>
+              <p style="color:var(--slate-600)">Companies must supply verifiable business license registration (NIB/SIUP), commercial tax ID, and formal company domain credentials before listings are published.</p>
+            </div>
+            <div>
+              <b style="color:var(--slate-900);display:block;margin-bottom:2px">Is the ATS resume builder compliant with standard enterprise systems?</b>
+              <p style="color:var(--slate-600)">Yes. Resumes generated through our engine follow single-column parsing rules tested against Workday, Greenhouse, Taleo, and Lever systems.</p>
+            </div>
+          </div>
+        `;
+      } else {
+        html = `
+          <h3 style="font-size:18px;font-weight:800;color:var(--primary);margin-bottom:10px">Institutional Overview</h3>
+          <p style="font-size:13px;color:var(--slate-600);line-height:1.6">
+            KitabisaKerja is an early-career infrastructure platform engineered to bridge the Indonesian youth employment gap with vetted enterprise hiring pipelines.
+          </p>
+        `;
+      }
+
+      container.innerHTML = html;
+      overlay.classList.add('active');
+
+      if (window.Motion) {
+        window.Motion.animate(
+          document.getElementById('modalBox'),
+          { scale: [0.94, 1], opacity: [0, 1], y: [16, 0] },
+          { duration: 0.25, easing: [0.16, 1, 0.3, 1] }
+        );
+      }
+    }
+
+    function closeModal() {
+      const overlay = document.getElementById('modalOverlay');
+      if (window.Motion) {
+        window.Motion.animate(
+          document.getElementById('modalBox'),
+          { scale: 0.95, opacity: 0, y: 10 },
+          { duration: 0.15 }
+        ).then(() => {
+          overlay.classList.remove('active');
+        });
+      } else {
+        overlay.classList.remove('active');
+      }
+    }
+
+    function handleModalSubmit(msg) {
+      const notice = document.getElementById('authNotice');
+      if (notice) {
+        notice.style.display = 'block';
+        notice.textContent = msg;
+        setTimeout(() => closeModal(), 1800);
+      }
+    }
+
+    function openJobDetail(title, company, location, type, pay, desc, req) {
+      openModal('jobDetail', { title, company, location, type, pay, desc, req });
+    }
+
+    function openCheckoutModal(plan) {
+      openModal('checkout', { plan });
+    }
+
+    function applyJob(title) {
+      const status = document.getElementById('applyStatus');
+      if (status) {
+        status.style.display = 'block';
+        status.innerHTML = `✓ Direct application for <b>${title}</b> submitted to the hiring team. Confirmation dispatched to your email.`;
+      }
+    }
+
+    function toggleSaveJob(btn) {
+      btn.classList.toggle('saved');
+      const isSaved = btn.classList.contains('saved');
+      if (window.Motion) {
+        window.Motion.animate(btn, { scale: [1, 1.25, 1] }, { duration: 0.25 });
+      }
+      if (isSaved) savedJobCount++;
+      else savedJobCount = Math.max(0, savedJobCount - 1);
+    }
+
+    // Opportunity Search & Filter Engine
+    function runFilters() {
+      const keyword = (document.getElementById('heroKeyword').value || '').toLowerCase().trim();
+      const location = document.getElementById('locationSelectFilter').value;
+      const typeBtn = document.querySelector('#typePills .filter-pill.active');
+      const typeText = typeBtn ? typeBtn.textContent.trim() : 'All Tracks';
+
+      const cards = document.querySelectorAll('.job-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const cType = card.getAttribute('data-type');
+        const cLoc = card.getAttribute('data-location');
+
+        const matchKeyword = !keyword || title.includes(keyword);
+        const matchLoc = !location || cLoc === location;
+        let matchType = true;
+        if (typeText === 'Internship') matchType = (cType === 'Internship');
+        else if (typeText === 'Graduate Trainee') matchType = (cType === 'Graduate Program');
+        else if (typeText === 'Part-Time') matchType = (cType === 'Part-time');
+        else if (typeText === 'Full-Time Entry') matchType = (cType === 'Entry-level');
+
+        if (matchKeyword && matchLoc && matchType) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('jobCountBadge').textContent = visibleCount;
+      document.getElementById('emptyJobState').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    function setTypeFilter(val, btn) {
+      document.querySelectorAll('#typePills .filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      runFilters();
+    }
+
+    function executeHeroSearch() {
+      const kw = document.getElementById('heroKeyword').value;
+      const loc = document.getElementById('heroLocation').value;
+      const typ = document.getElementById('heroType').value;
+
+      document.getElementById('locationSelectFilter').value = loc;
+
+      if (typ) {
+        const pills = document.querySelectorAll('#typePills .filter-pill');
+        pills.forEach(p => {
+          if (p.textContent.toLowerCase().includes(typ.toLowerCase())) {
+            pills.forEach(b => b.classList.remove('active'));
+            p.classList.add('active');
+          }
+        });
+      }
+
+      runFilters();
+      document.getElementById('jobs').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetJobFilters() {
+      document.getElementById('heroKeyword').value = '';
+      document.getElementById('locationSelectFilter').value = '';
+      const allPill = document.querySelector('#typePills .filter-pill');
+      if (allPill) {
+        document.querySelectorAll('#typePills .filter-pill').forEach(b => b.classList.remove('active'));
+        allPill.classList.add('active');
+      }
+      runFilters();
+    }
+
+    // ATS Resume Studio Updates
+    function updateCvPreview() {
+      const name = document.getElementById('cvInputName').value || 'Candidate Name';
+      const contact = document.getElementById('cvInputContact').value || 'Contact Details';
+      const edu = document.getElementById('cvInputEdu').value || 'Academic Background';
+      const summary = document.getElementById('cvInputSummary').value || 'Executive summary...';
+      const skills = document.getElementById('cvInputSkills').value || 'Core competencies...';
+      const exp = document.getElementById('cvInputExp').value || 'Key projects and leadership...';
+
+      document.getElementById('previewName').textContent = name;
+      document.getElementById('previewContact').textContent = contact;
+      document.getElementById('previewEdu').textContent = edu;
+      document.getElementById('previewSummary').textContent = summary;
+      document.getElementById('previewSkills').textContent = skills;
+      document.getElementById('previewExp').textContent = exp;
+
+      let score = 55;
+      if (name.length > 5) score += 8;
+      if (contact.includes('@')) score += 8;
+      if (summary.length > 50) score += 12;
+      if (skills.split(',').length >= 4) score += 11;
+      if (exp.length > 70) score += 8;
+      score = Math.min(score, 98);
+
+      document.getElementById('atsScoreValue').textContent = `ATS Score: ${score}/100`;
+    }
+
+    function loadBusinessSample() {
+      document.getElementById('cvInputName').value = 'Rian Dwi Wicaksono';
+      document.getElementById('cvInputContact').value = 'rian.wicaksono@email.com • +62 821-9988-7766 • Semarang, Indonesia';
+      document.getElementById('cvInputEdu').value = 'Universitas Diponegoro — B.A. Economics & Finance (2022–2026) • GPA 3.82/4.00';
+      document.getElementById('cvInputSummary').value = 'Motivated finance and commercial operations candidate with strong proficiency in financial modeling, balance sheet analytics, and SQL. Completed two rotational internships in corporate treasury and audit.';
+      document.getElementById('cvInputSkills').value = 'Financial Modeling, Excel (VLOOKUP, Pivot, Macros), SQL, Power BI, Budget Forecasting, Business Valuation';
+      document.getElementById('cvInputExp').value = '• Investment Banking Case Competition Winner: Modeled DCF valuation and leveraged buyout scenarios for retail mergers.\n• Head of Treasury, Student Executive Board: Oversaw annual operating budget of IDR 80M across 14 departmental committees with zero discrepancy.';
+      updateCvPreview();
+    }
+
+    function printCv() {
+      document.body.classList.add('printing-cv-only');
+      window.print();
+      setTimeout(() => {
+        document.body.classList.remove('printing-cv-only');
+      }, 1000);
+    }
+
+    function setBillingCycle(cycle) {
+      currentBilling = cycle;
+      const btnM = document.getElementById('btnMonthly');
+      const btnY = document.getElementById('btnYearly');
+      const display = document.getElementById('proPriceDisplay');
+
+      if (cycle === 'yearly') {
+        btnY.classList.add('active');
+        btnM.classList.remove('active');
+        display.innerHTML = 'Rp 199.999 <small>/ year (~Rp 16.667/mo)</small>';
+      } else {
+        btnM.classList.add('active');
+        btnY.classList.remove('active');
+        display.innerHTML = 'Rp 19.999 <small>/ month</small>';
+      }
+
+      if (window.Motion) {
+        window.Motion.animate(display, { scale: [1.1, 1], opacity: [0.7, 1] }, { duration: 0.2 });
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, s => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]));
+    }
+
+    // FRAMER MOTION INITIALIZATION
+    document.addEventListener('DOMContentLoaded', () => {
+      // Active Navbar Highlighting (Click & Scroll)
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section[id]');
+
+      function setActiveNav(id) {
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === `#${id}` || (id === 'home' && href === '#home')) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href').replace('#', '');
+          setActiveNav(targetId);
+        });
+      });
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            if (id) {
+              setActiveNav(id);
+            }
+          }
+        });
+      }, { rootMargin: '-20% 0px -60% 0px' });
+
+      sections.forEach(sec => sectionObserver.observe(sec));
+
+      if (!window.Motion) {
+        return;
+      }
+
+      const { animate, inView, stagger } = window.Motion;
+
+      animate(
+        '#heroLeft',
+        { opacity: [0.85, 1], y: [10, 0] },
+        { duration: 0.35, easing: [0.16, 1, 0.3, 1] }
+      );
+
+      animate(
+        '#heroRight',
+        { opacity: [0.85, 1], scale: [0.98, 1], y: [10, 0] },
+        { duration: 0.35, easing: [0.16, 1, 0.3, 1] }
+      );
+
+      animate(
+        '#floatTop',
+        { y: [0, -6, 0] },
+        { duration: 4, repeat: Infinity, easing: 'easeInOut' }
+      );
+      animate(
+        '#floatBottom',
+        { y: [0, 6, 0] },
+        { duration: 4.5, repeat: Infinity, easing: 'easeInOut' }
+      );
+
+      inView('#impactGrid', () => {
+        animate(
+          '.impact-card',
+          { opacity: [0.7, 1], y: [14, 0] },
+          { delay: stagger(0.05), duration: 0.4, easing: [0.16, 1, 0.3, 1] }
+        );
+      });
+
+      inView('#jobsContainer', () => {
+        animate(
+          '.job-card',
+          { opacity: [0.7, 1], y: [16, 0] },
+          { delay: stagger(0.04), duration: 0.4, easing: [0.16, 1, 0.3, 1] }
+        );
+      });
+
+      inView('#bentoGrid', () => {
+        animate(
+          '.bento-card',
+          { opacity: [0.7, 1], y: [16, 0] },
+          { delay: stagger(0.05), duration: 0.4, easing: [0.16, 1, 0.3, 1] }
+        );
+      });
+
+
+      inView('.pricing-grid', () => {
+        animate(
+          '.pricing-card',
+          { opacity: [0.7, 1], y: [16, 0] },
+          { delay: stagger(0.05), duration: 0.4, easing: [0.16, 1, 0.3, 1] }
+        );
+      });
+    });
+  </script>
+</body>
+</html>
