@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#0B192C"/>
+  <g transform="translate(32,32)">
+    <!-- Top (Orange) -->
+    <g>
+      <circle cx="0" cy="-18" r="4.8" fill="#FF5E36"/>
+      <path d="M -12 -11 C -5 -15, 5 -15, 12 -11 C 10 -5, 5 -3, 0 -3 C -5 -3, -10 -5, -12 -11 Z" fill="#FF6A3D"/>
+    </g>
+    <!-- Right (Yellow) -->
+    <g transform="rotate(90)">
+      <circle cx="0" cy="-18" r="4.8" fill="#FBBF24"/>
+      <path d="M -12 -11 C -5 -15, 5 -15, 12 -11 C 10 -5, 5 -3, 0 -3 C -5 -3, -10 -5, -12 -11 Z" fill="#FBBF24"/>
+    </g>
+    <!-- Bottom (Blue) -->
+    <g transform="rotate(180)">
+      <circle cx="0" cy="-18" r="4.8" fill="#0284C7"/>
+      <path d="M -12 -11 C -5 -15, 5 -15, 12 -11 C 10 -5, 5 -3, 0 -3 C -5 -3, -10 -5, -12 -11 Z" fill="#0284C7"/>
+    </g>
+    <!-- Left (Green) -->
+    <g transform="rotate(270)">
+      <circle cx="0" cy="-18" r="4.8" fill="#10B981"/>
+      <path d="M -12 -11 C -5 -15, 5 -15, 12 -11 C 10 -5, 5 -3, 0 -3 C -5 -3, -10 -5, -12 -11 Z" fill="#10B981"/>
+    </g>
+  </g>
+</svg>
